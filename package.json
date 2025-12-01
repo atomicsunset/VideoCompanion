@@ -1,0 +1,50 @@
+{
+  "name": "video-companion",
+  "version": "1.0.0",
+  "description": "Dual-monitor video player for clean video output",
+  "main": "src/main.js",
+  "author": "Atomation",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "package": "electron-packager . \"Atomation Video Companion\" --platform=win32 --arch=x64 --out=dist-new --overwrite --app-copyright=\"Atomation\" --app-version=1.0.0",
+    "dev": "electron . --dev"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "electron-builder-squirrel-windows": "^24.13.3",
+    "electron-packager": "^17.1.2"
+  },
+  "build": {
+    "appId": "com.atomation.videocompanion",
+    "productName": "Atomation Video Companion",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "verifyUpdateCodeSignature": false,
+      "certificateSubjectName": null,
+      "certificateSha1": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "portable": {
+      "artifactName": "Atomation-Video-Companion.exe"
+    }
+  }
+}

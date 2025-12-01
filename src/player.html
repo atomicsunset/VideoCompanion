@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            overflow: hidden;
+            cursor: none;
+        }
+        
+        #videoPlayer {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background: #000;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            z-index: 10;
+        }
+        
+        .error {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff6b6b;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            text-align: center;
+            z-index: 10;
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading" class="loading" style="display: none;">Loading video...</div>
+    <div id="error" class="error" style="display: none;"></div>
+    <video id="videoPlayer" muted></video>
+    
+    <script src="player-renderer.js"></script>
+</body>
+</html>

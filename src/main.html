@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Companion - Control</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #005a9e;
+        }
+        
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+        
+        .playlist-container {
+            border: 2px dashed #555;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 300px;
+            background: #2d2d2d;
+        }
+        
+        .playlist-container.drag-over {
+            border-color: #007acc;
+            background: #1a3a5c;
+        }
+        
+        .playlist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .playlist-item {
+            background: #3a3a3a;
+            margin: 5px 0;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .playlist-item:hover {
+            background: #4a4a4a;
+        }
+        
+        .playlist-item.current {
+            background: #007acc;
+        }
+        
+        .playlist-item.selected {
+            background: #5a5a5a;
+            border: 2px solid #007acc;
+        }
+        
+        .playlist-item.dragging {
+            opacity: 0.5;
+        }
+        
+        .video-info {
+            flex: 1;
+        }
+        
+        .video-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .video-path {
+            font-size: 12px;
+            color: #aaa;
+            word-break: break-all;
+        }
+        
+        .item-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .item-controls button {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: #aaa;
+            padding: 50px 0;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #2d2d2d;
+            border-radius: 5px;
+        }
+        
+        .add-files {
+            background: #28a745;
+            margin-right: 10px;
+        }
+        
+        .add-files:hover {
+            background: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="time-display" id="timeDisplay" style="text-align: center; margin-bottom: 20px; padding: 20px; background: #2d2d2d; border-radius: 5px; font-size: 48px; font-weight: bold; color: #ffffff; min-height: 80px; display: flex; align-items: center; justify-content: center; border: 3px solid #007acc;">
+            --:--
+        </div>
+        
+        <div class="header">
+            <h1>Atomation Video Companion</h1>
+            <p>Drag MP4 files to the playlist or use the Add Files button</p>
+        </div>
+        
+        <div class="controls">
+            <button class="add-files" onclick="addFiles()">Add Files</button>
+            <button onclick="playVideo()" id="playBtn">Play</button>
+            <button onclick="pauseVideo()" id="pauseBtn">Pause</button>
+            <button onclick="stopVideo()" id="stopBtn">Stop</button>
+            <button onclick="nextVideo()" id="nextBtn">Next</button>
+            <button onclick="prevVideo()" id="prevBtn">Previous</button>
+            <button onclick="toggleLoop()" id="loopBtn">Loop: Off</button>
+            <button onclick="clearPlaylist()" id="clearBtn">Clear All</button>
+        </div>
+        
+        <div class="playlist-container" id="playlistContainer">
+            <ul class="playlist" id="playlist">
+                <div class="empty-state" id="emptyState">
+                    Drop MP4 files here or click "Add Files" to get started
+                </div>
+            </ul>
+        </div>
+        
+        <div class="status" id="status">
+            Ready - No video loaded
+        </div>
+    </div>
+
+    <script src="main-renderer.js"></script>
+</body>
+</html>
