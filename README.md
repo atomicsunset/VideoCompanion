@@ -1,6 +1,6 @@
-# Video Companion
+# Atomation Video Companion
 
-A dual-monitor video player designed for clean video output to a second display.
+A dual-monitor video player designed for clean video output to a second display. Perfect for presentations, broadcasting, churches, and schools.
 
 ## Features
 
